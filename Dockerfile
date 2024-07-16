@@ -1,7 +1,7 @@
 # Use an official Java runtime as a parent image 
 FROM openjdk:11
 
-# Set the working directory in the container
+# Set the working directory in the container 
 WORKDIR /workspace
 
 # Install required tools
