@@ -14,8 +14,8 @@ This repository is a scientific product and is not official communication of the
 ##### License
 - See the [LICENSE.md](./LICENSE.md) for details on this code
 - For x3 (lossless audio compression) packing and unpacking, see their [GPL-3.0 license](https://github.com/PAMGuard/x3/blob/main/LICENSE) for more details
-
-### Reference: 
+  
+##### Reference/Credits: 
 - x3 Java Source: https://github.com/PAMGuard/x3
   - Fork: https://github.com/MichaelAkridge-NOAA/x3
 - https://bioacoustics.stackexchange.com/questions/1258/soundtrap-sud-extracting
