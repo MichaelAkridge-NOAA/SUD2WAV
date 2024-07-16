@@ -8,7 +8,9 @@ WORKDIR /workspace
 RUN apt-get update && apt-get install -y wget git
 
 # Clone the necessary directory from the GitHub repository
-RUN git clone https://github.com/macster110/x3.git /workspace/x3
+# RUN git clone https://github.com/macster110/x3.git /workspace/x3
+RUN git clone https://github.com/MichaelAkridge-NOAA/x3.git /workspace/x3
+
 
 # Download required libraries
 RUN wget -P /workspace/lib https://repo1.maven.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar \
