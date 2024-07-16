@@ -1,4 +1,4 @@
-name: Convert SUD(s) to WAV(s) 
+name: Convert SUD to WAV
 on:
   push:
     branches:
@@ -26,13 +26,13 @@ jobs:
     - name: Build Docker image
       run: docker build -t sud_to_wav_converter .
 
-    - name: List input files before conversion
+    - name: List input files
       run: ls -l ${{ github.workspace }}/input_sud_files
 
     - name: Run conversion script
       run: docker run --rm -v ${{ github.workspace }}/input_sud_files:/workspace/input_sud_files -v ${{ github.workspace }}/output_wav_files:/workspace/output_wav_files sud_to_wav_converter /workspace/scripts/convert_files.sh
 
-    - name: List output files after conversion
+    - name: List output files
       run: ls -l ${{ github.workspace }}/output_wav_files
 
     - name: Commit and push output files
@@ -43,4 +43,5 @@ jobs:
         git add output_wav_files/*
         git commit -m 'Add converted wav files'
         git push --set-upstream origin output --force
+
 

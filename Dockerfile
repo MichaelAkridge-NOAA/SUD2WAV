@@ -1,4 +1,4 @@
-# Use an official Java runtime as a parent image 
+# Use an official Java runtime as a parent image
 FROM openjdk:11
 
 # Set the working directory in the container
@@ -7,7 +7,7 @@ WORKDIR /workspace
 # Install required tools
 RUN apt-get update && apt-get install -y wget git
 
-# Clone your forked repository
+# Clone your fork of the repository
 RUN git clone https://github.com/MichaelAkridge-NOAA/x3.git /workspace/x3
 
 # Download required libraries
@@ -20,7 +20,7 @@ COPY scripts /workspace/scripts
 # Make the script executable
 RUN chmod +x /workspace/scripts/convert_files.sh
 
-# Compile the Java code from your forked repository
+# Compile the Java code from your repository
 RUN javac -cp /workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar /workspace/x3/X3/src/org/pamguard/x3/sud/ConvertSUDToWAV.java
 
 # Default command
