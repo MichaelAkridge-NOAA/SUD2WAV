@@ -1,11 +1,9 @@
-name: Convert SUD to WAV
-
+name: Convert SUD(s) to WAV(s)
 on:
   push:
     branches:
       - main
       - 'input/**' # Trigger on pushes to the input_sud_files directory
-
 jobs:
   convert:
     runs-on: ubuntu-latest
