@@ -1,0 +1,41 @@
+name: Convert SUD to WAV
+
+on:
+  push:
+    branches:
+      - main
+      - 'input/**' # Trigger on pushes to the input_sud_files directory
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Cache Docker layers
+      uses: actions/cache@v2
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
+    - name: Build Docker image
+      run: docker build -t sud_to_wav_converter .
+
+    - name: Run conversion script
+      run: docker run --rm -v ${{ github.workspace }}/input_sud_files:/workspace/input_sud_files -v ${{ github.workspace }}/output_wav_files:/workspace/output_wav_files sud_to_wav_converter /workspace/scripts/convert_files.sh
+
+    - name: Commit and push output files
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git checkout -b output
+        git add output_wav_files/*
+        git commit -m 'Add converted wav files'
+        git push --set-upstream origin output --force
