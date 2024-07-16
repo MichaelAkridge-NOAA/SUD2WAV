@@ -14,6 +14,9 @@ RUN git clone https://github.com/macster110/x3.git /workspace/x3
 RUN wget -P /workspace/lib https://repo1.maven.org/maven2/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar \
     && wget -P /workspace/lib https://repo1.maven.org/maven2/com/google/guava/guava/30.1.1-jre/guava-30.1.1-jre.jar
 
+# Copy the scripts directory into the container
+COPY scripts /workspace/scripts
+
 # Compile the Java code
 RUN javac -cp /workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar /workspace/x3/X3/src/org/pamguard/x3/sud/test/SudarFileTest.java
 
