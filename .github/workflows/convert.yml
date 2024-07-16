@@ -1,4 +1,4 @@
-name: Convert SUD to WAV
+name: Convert SUD(s) to WAV(s)
 on:
   push:
     branches:
