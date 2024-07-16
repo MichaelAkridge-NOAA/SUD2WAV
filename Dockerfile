@@ -26,3 +26,4 @@ RUN javac -cp /workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspa
 # Default command
 CMD ["java", "-cp", "/workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar", "org.pamguard.x3.sud.ConvertSUDToWAV"]
 
+

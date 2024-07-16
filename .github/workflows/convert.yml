@@ -1,9 +1,11 @@
-name: Convert SUD(s) to WAV(s)
+name: Convert SUD to WAV
+
 on:
   push:
     branches:
       - main
       - 'input/**' # Trigger on pushes to the input_sud_files directory
+
 jobs:
   convert:
     runs-on: ubuntu-latest
@@ -43,5 +45,6 @@ jobs:
         git add output_wav_files/*
         git commit -m 'Add converted wav files'
         git push --set-upstream origin output --force
+
 
 
