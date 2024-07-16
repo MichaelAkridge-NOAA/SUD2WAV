@@ -17,6 +17,9 @@ RUN wget -P /workspace/lib https://repo1.maven.org/maven2/commons-io/commons-io/
 # Copy the scripts directory into the container
 COPY scripts /workspace/scripts
 
+# Make the script executable
+RUN chmod +x /workspace/scripts/convert_files.sh
+
 # Compile the Java code
 RUN javac -cp /workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar /workspace/x3/X3/src/org/pamguard/x3/sud/test/SudarFileTest.java
 
