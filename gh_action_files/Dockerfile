@@ -15,7 +15,7 @@ RUN wget -P /workspace/lib https://repo1.maven.org/maven2/commons-io/commons-io/
     && wget -P /workspace/lib https://repo1.maven.org/maven2/com/google/guava/guava/30.1.1-jre/guava-30.1.1-jre.jar
 
 # Copy the scripts directory into the container
-COPY scripts /workspace/scripts
+COPY gh_action_files/scripts /workspace/scripts
 
 # Make the script executable
 RUN chmod +x /workspace/scripts/convert_files.sh
