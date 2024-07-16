@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Cache Docker layers
@@ -27,17 +29,15 @@ jobs:
       run: docker run --rm -v ${{ github.workspace }}/input_sud_files:/workspace/input_sud_files -v ${{ github.workspace }}/output_wav_files:/workspace/output_wav_files sud_to_wav_converter /workspace/scripts/convert_files.sh
     - name: List output files
       run: ls -l ${{ github.workspace }}/output_wav_files
-    - name: Commit and push output files
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Configure Git identity
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
+    - name: Commit and push output files
+      run: |
         DATE=$(date +'%Y-%m-%d')
         BRANCH_NAME="output-$DATE"
         git checkout -b $BRANCH_NAME
         git add output_wav_files/*
         git commit -m 'Add converted wav files'
         git push --force "https://MichaelAkridge-NOAA:${{ secrets.PAT }}@github.com/MichaelAkridge-NOAA/SUD2WAV.git" $BRANCH_NAME
-    - name: Clean up output folder
-      run: rm -rf ${{ github.workspace }}/output_wav_files/*
