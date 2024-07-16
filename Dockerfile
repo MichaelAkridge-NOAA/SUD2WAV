@@ -5,17 +5,13 @@ FROM openjdk:11
 WORKDIR /workspace
 
 # Install required tools
-RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y wget git
 
-# Download the Java files from the GitHub repository
-RUN wget -P /workspace/org/pamguard/x3/sud/test https://raw.githubusercontent.com/macster110/x3/main/X3/src/org/pamguard/x3/sud/test/SudarFileTest.java \
-    && wget -P /workspace/org/pamguard/x3/sud https://raw.githubusercontent.com/macster110/x3/main/X3/src/org/pamguard/x3/sud/SudFileExpander.java \
-    && wget -P /workspace/org/pamguard/x3/sud https://raw.githubusercontent.com/macster110/x3/main/X3/src/org/pamguard/x3/sud/Chunk.java \
-    && wget -P /workspace/org/pamguard/x3/sud https://raw.githubusercontent.com/macster110/x3/main/X3/src/org/pamguard/x3/sud/SudParams.java \
-    && wget -P /workspace/org/pamguard/x3/utils https://raw.githubusercontent.com/macster110/x3/main/X3/src/org/pamguard/x3/utils/XMLUtils.java
+# Clone the necessary directory from the GitHub repository
+RUN git clone https://github.com/macster110/x3.git /workspace/x3
 
 # Compile the Java code
-RUN javac -cp . org/pamguard/x3/sud/test/SudarFileTest.java
+RUN javac -cp /workspace/x3/X3/src org/pamguard/x3/sud/test/SudarFileTest.java
 
 # Default command
-CMD ["java", "org.pamguard.x3.sud.test.SudarFileTest"]
+CMD ["java", "-cp", "/workspace/x3/X3/src", "org.pamguard.x3.sud.test.SudarFileTest"]

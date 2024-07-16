@@ -39,3 +39,4 @@ jobs:
         git add output_wav_files/*
         git commit -m 'Add converted wav files'
         git push --set-upstream origin output --force
+
