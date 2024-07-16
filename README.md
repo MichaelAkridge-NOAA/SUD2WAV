@@ -1,5 +1,5 @@
 # SUD2WAV
-Converts .sud files to .wav files via Github Action. 
+## Converts .sud files to .wav files via Github Action 
 - Uses x3 (lossless audio compression) java implementation for unpacking
 
 Setup:
