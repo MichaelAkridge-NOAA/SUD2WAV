@@ -27,8 +27,10 @@ jobs:
       run: ls -l ${{ github.workspace }}/input_sud_files
     - name: Run conversion script
       run: docker run --rm -v ${{ github.workspace }}/input_sud_files:/workspace/input_sud_files -v ${{ github.workspace }}/output_wav_files:/workspace/output_wav_files sud_to_wav_converter /workspace/scripts/convert_files.sh
+
     - name: List output files
       run: ls -l ${{ github.workspace }}/output_wav_files
+
     - name: Configure Git identity
       run: |
         git config --global user.email "action@github.com"
@@ -38,6 +40,7 @@ jobs:
         DATE=$(date +'%Y-%m-%d')
         BRANCH_NAME="output-$DATE"
         git checkout -b $BRANCH_NAME
+        # Only add output_wav_files to the commit
         git add output_wav_files/*
         git commit -m 'Add converted wav files'
         git push --force "https://MichaelAkridge-NOAA:${{ secrets.PAT }}@github.com/MichaelAkridge-NOAA/SUD2WAV.git" $BRANCH_NAME
