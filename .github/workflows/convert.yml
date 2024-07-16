@@ -22,7 +22,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
     - name: Build Docker image
-      run: docker build -t sud_to_wav_converter gh_action_files/Dockerfile
+      run: docker build -t sud_to_wav_converter /gh_action_files/Dockerfile
     - name: List input files
       run: ls -l ${{ github.workspace }}/input_sud_files
     - name: Run conversion script
