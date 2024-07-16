@@ -21,8 +21,8 @@ COPY scripts /workspace/scripts
 RUN chmod +x /workspace/scripts/convert_files.sh
 
 # Compile the Java code from your forked repository
-RUN javac -cp /workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar /workspace/x3/X3/src/org/pamguard/x3/sud/test/SudarFileTest.java
+RUN javac -cp /workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar /workspace/scripts/org/pamguard/x3/sud/ConvertSUDToWAV.java
 
 # Default command
-CMD ["java", "-cp", "/workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar", "org.pamguard.x3.sud.test.SudarFileTest"]
+CMD ["java", "-cp", "/workspace/x3/X3/src:/workspace/lib/commons-io-2.11.0.jar:/workspace/lib/guava-30.1.1-jre.jar", "org.pamguard.x3.sud.ConvertSUDToWAV"]
 
