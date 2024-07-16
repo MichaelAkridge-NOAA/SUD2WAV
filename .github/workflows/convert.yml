@@ -9,38 +9,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
-
+      uses: actions/checkout@v4
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
+      uses: docker/setup-buildx-action@v3
     - name: Cache Docker layers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-buildx-
-
     - name: Build Docker image
       run: docker build -t sud_to_wav_converter .
-
     - name: List input files
       run: ls -l ${{ github.workspace }}/input_sud_files
-
     - name: Run conversion script
       run: docker run --rm -v ${{ github.workspace }}/input_sud_files:/workspace/input_sud_files -v ${{ github.workspace }}/output_wav_files:/workspace/output_wav_files sud_to_wav_converter /workspace/scripts/convert_files.sh
-
     - name: List output files
       run: ls -l ${{ github.workspace }}/output_wav_files
-
     - name: Commit and push output files
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
-        git checkout -b output
+        DATE=$(date +'%Y-%m-%d')
+        BRANCH_NAME="output-$DATE"
+        git checkout -b $BRANCH_NAME
         git add output_wav_files/*
         git commit -m 'Add converted wav files'
-        git push --set-upstream origin output --force
+        git push --force "https://MichaelAkridge-NOAA:${{ secrets.PAT }}@github.com/MichaelAkridge-NOAA/SUD2WAV.git" $BRANCH_NAME
+    - name: Clean up output folder
+      run: rm -rf ${{ github.workspace }}/output_wav_files/*
