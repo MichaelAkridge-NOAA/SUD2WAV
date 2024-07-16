@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y wget git
 RUN git clone https://github.com/macster110/x3.git /workspace/x3
 
 # Compile the Java code
-RUN javac -cp /workspace/x3/X3/src org/pamguard/x3/sud/test/SudarFileTest.java
+RUN javac -cp /workspace/x3/X3/src /workspace/x3/X3/src/org/pamguard/x3/sud/test/SudarFileTest.java
 
 # Default command
 CMD ["java", "-cp", "/workspace/x3/X3/src", "org.pamguard.x3.sud.test.SudarFileTest"]
+
