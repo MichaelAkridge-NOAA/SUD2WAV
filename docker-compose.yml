@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  sud_to_wav_app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./input_sud_files:/workspace/input_sud_files
+      - ./output_wav_files:/workspace/output_wav_files
