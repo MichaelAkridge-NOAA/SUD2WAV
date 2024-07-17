@@ -2,6 +2,11 @@ import streamlit as st
 import os
 import subprocess
 
+st.set_page_config(
+    page_title="SUD to WAV Converter",
+    page_icon="🎵",
+)
+
 def convert_sud_to_wav(input_dir, output_dir):
     # Ensure output directory exists
     os.makedirs(output_dir, exist_ok=True)
