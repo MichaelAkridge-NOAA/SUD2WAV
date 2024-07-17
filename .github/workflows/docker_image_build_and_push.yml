@@ -62,6 +62,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }} # Docker Hub username stored in secrets
           password: ${{ secrets.DOCKER_TOKEN }} # Docker Hub token stored in secrets
-          repository: ${{ secrets.DOCKER_USERNAME }}/github-actions-sh-runner # Docker Hub repository name
+          repository: ${{ secrets.DOCKER_USERNAME }}/sud_to_wav_converter_app # Docker Hub repository name
           readme-filepath: ./README.md # Path to the README file to use for description
           enable-url-completion: true # Enable URL completion in the Docker Hub description based on GitHub links
