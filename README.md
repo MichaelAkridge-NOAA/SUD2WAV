@@ -2,7 +2,7 @@
 - Option 1: A Python web app to convert `.sud` files to `.wav` files using docker & Java-based conversion library
 - Option 2: An automated conversion process using GitHub Action Workflow
 
-<img src="./docs/s01.png" width="720"/>
+<img src="./docs/s00.png" width="720"/>
 
 ## Table of Contents
 - [Option 1. Using the Python Web App via Docker](#option-1-using-the-python-web-app-via-docker)
@@ -22,6 +22,7 @@
 
 ## Option 1. Using the Python Web App via Docker
 <img src="./docs/s01.png" width="720"/>
+<img src="./docs/s07.png" width="720"/>
 
 ### Prerequisites
 - Docker / Docker Compose
