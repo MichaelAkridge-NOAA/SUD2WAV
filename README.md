@@ -32,7 +32,19 @@
     git clone https://github.com/MichaelAkridge-NOAA/SUD2WAV.git
     cd SUD2WAV
     ```
-2. **Pull and run the Docker containers:**
+2. **Update Docker Compose File Volume Paths:**
+- Update input and output folder paths
+```
+services:
+  sud_to_wav:
+    image: michaelakridge326/sud_to_wav_converter_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - C:/UPDATE_THIS_FOLDER_PATH_input_sud_files:/workspace/input_sud_files
+      - C:/UPDATE_THIS_FOLDER_PATH_output_wav_files:/workspace/output_wav_files
+```
+3. **Pull Docker Image and run the Docker Compose File:**
 
     ```sh
     docker pull michaelakridge326/sud_to_wav_converter_app
