@@ -15,6 +15,11 @@
 - [License](#license)
 - [Reference/Credits](#referencecredits)
 
+## Data Files
+- ‘sud’ files which are the raw downloaded file. This is a compressed file and therefore ideal for storing or sending of complete recordings.
+- ‘wav’ files containing the audio. This is a Microsoft WAV format file that can be opened by any media player, matlab, etc
+- ‘xml’ files contain metadata such as date recorded, gain setting, etc
+
 ## Option 1. Using the Python Web App via Docker
 ### Prerequisites
 - Docker / Docker Compose
