@@ -2,7 +2,7 @@
 FROM amazoncorretto:11 as java
 
 # Use any Python image for Streamlit app
-FROM python:3.8-slim as python
+FROM python:3.11-slim as python
 
 # Copy the entire Java installation from the Java stage
 COPY --from=java /usr/local /usr/local
