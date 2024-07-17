@@ -2,7 +2,8 @@
 - Option 1: A Python web app to convert `.sud` files to `.wav` files using docker & Java-based conversion library
 - Option 2: An automated conversion process using GitHub Action Workflow
 
-<img src="./docs/s00.png" width="720"/>
+<img src="https://github.com/MichaelAkridge-NOAA/SUD2WAV/raw/main/docs/s00.png" width="720"/>
+
 
 ## Table of Contents
 - [Option 1. Using the Python Web App via Docker](#option-1-using-the-python-web-app-via-docker)
@@ -21,8 +22,8 @@
 - ‘xml’ files contain metadata such as date recorded, gain setting, etc
 
 ## Option 1. Using the Python Web App via Docker
-<img src="./docs/s01.png" width="720"/>
-<img src="./docs/s07.png" width="720"/>
+<img src="https://github.com/MichaelAkridge-NOAA/SUD2WAV/raw/main/docs/s01.png" width="720"/>
+<img src="https://github.com/MichaelAkridge-NOAA/SUD2WAV/raw/main/docs/s07.png" width="720"/>
 
 ### Prerequisites
 - Docker / Docker Compose
@@ -75,8 +76,8 @@ services:
     - When you push changes to the `main` branch or to the `input_sud_files` directory, the GitHub Actions workflow will be triggered to automatically convert the files.
 4. View the output branch
     - The converted `.wav` files will be committed to a new branch named `output-<date_time>` in your repository.
-<img src="./docs/s06.png" align= 'right' />
-<img src="./docs/s05.png" />
+<img src="https://github.com/MichaelAkridge-NOAA/SUD2WAV/raw/main/docs/s06.png" align= 'right' />
+<img src="https://github.com/MichaelAkridge-NOAA/SUD2WAV/raw/main/docs/s05.png" />
 
 ## File Structure
 ```
@@ -95,7 +96,7 @@ services:
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project content is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
 
 ##### License
-- See the [LICENSE.md](./LICENSE.md) for details on this code
+- See the [LICENSE.md](/LICENSE.md) for details on this code
 - For x3 (lossless audio compression) packing and unpacking, see their [GPL-3.0 license](https://github.com/PAMGuard/x3/blob/main/LICENSE) for more details
   
 ##### Reference/Credits: 
