@@ -1,6 +1,5 @@
-<img src="./docs/s01.png" align="right"  width="650"/>
-
 # SUD2WAV | SUD to WAV Converter
+<img src="./docs/s01.png" align="right"  width="450"/>
 - A Python web app to convert `.sud` files to `.wav` files using a docker & Java-based conversion libary. 
 - And an automated conversion process using GitHub Actions.
 
