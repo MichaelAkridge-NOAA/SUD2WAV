@@ -67,16 +67,12 @@
 
 ## File Structure
 ```
-├── Dockerfile
 ├── docker-compose.yml
 ├── README.md
-├── app.py
 ├── input_sud_files
 │   └── (place your .sud files here)
 ├── output_wav_files
 │   └── (converted .wav files will be saved here)
-├── scripts
-│   └── convert_files.sh
 └── .github
     └── workflows
         └── convert.yml
