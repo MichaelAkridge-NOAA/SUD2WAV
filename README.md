@@ -32,10 +32,11 @@
     git clone https://github.com/MichaelAkridge-NOAA/SUD2WAV.git
     cd SUD2WAV
     ```
-2. **Build and run the Docker containers:**
+2. **Pull and run the Docker containers:**
 
     ```sh
-    docker-compose up --build
+    docker pull michaelakridge326/sud_to_wav_converter_app
+    docker-compose up
     ```
     This command will build the Docker image and start the Streamlit app.
 ### Accessing the Web Application
