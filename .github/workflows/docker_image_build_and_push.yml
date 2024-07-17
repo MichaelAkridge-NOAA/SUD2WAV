@@ -1,8 +1,6 @@
 name: Build and Push Image to Docker Hub & GHCR
-
 on:
   workflow_dispatch: # Trigger workflow manually from GitHub Actions
-
 jobs:
   build:
     runs-on: ubuntu-latest # Use the latest Ubuntu runner
@@ -35,7 +33,7 @@ jobs:
       - name: Build and push Docker image to Docker Hub
         uses: docker/build-push-action@v6
         with:
-          context: ./images/github-actions-sh-runner # Directory containing Dockerfile and context
+          context: ./images/app # Directory containing Dockerfile and context
           push: true # Push the built image to Docker Hub
           tags: ${{ secrets.DOCKER_USERNAME }}/sud_to_wav_converter_app:latest # Tag for the Docker image
 
@@ -54,7 +52,7 @@ jobs:
       - name: Build and push Docker image to GHCR
         uses: docker/build-push-action@v6
         with:
-          context: ./images/github-actions-sh-runner # Directory containing Dockerfile and context
+          context: ./images/app # Directory containing Dockerfile and context
           push: true # Push the built image to GHCR
           tags: ghcr.io/${{ env.OWNER_LC }}/sud_to_wav_converter_app:latest # Tag for the Docker image
                   
