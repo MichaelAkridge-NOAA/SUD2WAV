@@ -1,17 +1,63 @@
-# SUD2WAV
-## Converts .sud files to .wav files via Github Action 
-- Uses x3 (lossless audio compression) java implementation for unpacking
+# SUD2WAV | SUD to WAV Converter
+- Option 1. Automate the conversion process using GitHub Actions.
+- Option 2. A Python web app to convert `.sud` files to `.wav` files using a docker.
+    - The app uses a Java-based conversion libary and integrates it into a Python Streamlit web interface. 
 
-## Setup:
+### Option 1. Using GitHub Actions
 
-placeholder
+1. Ensure your repository includes the GitHub Actions workflow file (`.github/workflows/convert.yml`):
+2. Under Repo Settings > Actions > General > Workflow Permissions make sure they are set to "Read and write"
+3. Add your `.sud` files to the `input_sud_files` directory and push to the repository:
+    - When you push changes to the `main` branch or to the `input_sud_files` directory, the GitHub Actions workflow will be triggered to automatically convert the files.
+4. View the output branch
+    - The converted `.wav` files will be committed to a new branch named `output-<date_time>` in your repository.
 
-## How to: 
+## Option 2. Using the Python Web App via Docker
+### Prerequisites
+- Docker / Docker Compose
+### Setup
+1. **Clone the repository:**
 
-placeholder
+    ```sh
+    git clone https://github.com/MichaelAkridge-NOAA/SUD2WAV.git
+    cd SUD2WAV
+    ```
+2. **Build and run the Docker containers:**
 
-Temp
-
+    ```sh
+    docker-compose up --build
+    ```
+    This command will build the Docker image and start the Streamlit app.
+### Accessing the Web Application
+1. **Access the web application:**
+    Open your web browser and go to:
+    ```
+    http://localhost:8501
+    ```
+2. **Upload `.sud` files:**
+    - Click on the "Browse files" button and select the `.sud` files you want to convert.
+    - The selected files will be listed under "Files to be processed".
+3. **Convert files:**
+    - Click the "Convert" button to start the conversion process.
+    - The conversion output and any errors will be displayed in the web interface.
+4. **Check the output:**
+    - The converted `.wav` files will be saved in the `./output_wav_files` directory on your host machine.
+## File Structure
+```
+├── Dockerfile
+├── docker-compose.yml
+├── README.md
+├── app.py
+├── input_sud_files
+│   └── (place your .sud files here)
+├── output_wav_files
+│   └── (converted .wav files will be saved here)
+├── scripts
+│   └── convert_files.sh
+└── .github
+    └── workflows
+        └── convert.yml
+```
 ----------
 #### Disclaimer
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project content is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
