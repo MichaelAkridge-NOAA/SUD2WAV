@@ -21,6 +21,8 @@
 - ‘xml’ files contain metadata such as date recorded, gain setting, etc
 
 ## Option 1. Using the Python Web App via Docker
+<img src="./docs/s01.png" width="720"/>
+
 ### Prerequisites
 - Docker / Docker Compose
 ### Setup
@@ -50,6 +52,7 @@
     - The conversion output and any errors will be displayed in the web interface.
 4. **Check the output:**
     - The converted `.wav` files will be saved in the `./output_wav_files` directory on your host machine.
+<img src="./docs/s03.png" />
 
 ## Option 2. Using GitHub Action
 1. Ensure your repository includes the GitHub Actions workflow file (`.github/workflows/convert.yml`):
@@ -58,6 +61,9 @@
     - When you push changes to the `main` branch or to the `input_sud_files` directory, the GitHub Actions workflow will be triggered to automatically convert the files.
 4. View the output branch
     - The converted `.wav` files will be committed to a new branch named `output-<date_time>` in your repository.
+<img src="./docs/s06.png" align= 'right' />
+<img src="./docs/s05.png" />
+
 ## File Structure
 ```
 ├── Dockerfile
