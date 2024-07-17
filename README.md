@@ -1,7 +1,19 @@
+<img src="./docs/s01.png" align="right"  width="650"/>
+
 # SUD2WAV | SUD to WAV Converter
-- Option 1. A Python web app to convert `.sud` files to `.wav` files using a docker.
-    - The app uses a Java-based conversion libary and integrates it into a Python Streamlit web interface. 
-- Option 2. Automate the conversion process using GitHub Actions.
+- A Python web app to convert `.sud` files to `.wav` files using a docker & Java-based conversion libary. 
+- And an automated conversion process using GitHub Actions.
+
+## Table of Contents
+- [Option 1. Using the Python Web App via Docker](#option-1-using-the-python-web-app-via-docker)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+  - [Accessing the Web Application](#accessing-the-web-application)
+- [Option 2. Using the GitHub Action](#option-2-using-github-action)
+- [File Structure](#file-structure)
+- [Disclaimer](#disclaimer)
+- [License](#license)
+- [Reference/Credits](#referencecredits)
 
 ## Option 1. Using the Python Web App via Docker
 ### Prerequisites
@@ -34,15 +46,13 @@
 4. **Check the output:**
     - The converted `.wav` files will be saved in the `./output_wav_files` directory on your host machine.
 
-## Option 2. Using GitHub Actions
-
+## Option 2. Using GitHub Action
 1. Ensure your repository includes the GitHub Actions workflow file (`.github/workflows/convert.yml`):
 2. Under Repo Settings > Actions > General > Workflow Permissions make sure they are set to "Read and write"
 3. Add your `.sud` files to the `input_sud_files` directory and push to the repository:
     - When you push changes to the `main` branch or to the `input_sud_files` directory, the GitHub Actions workflow will be triggered to automatically convert the files.
 4. View the output branch
     - The converted `.wav` files will be committed to a new branch named `output-<date_time>` in your repository.
-
 ## File Structure
 ```
 ├── Dockerfile
