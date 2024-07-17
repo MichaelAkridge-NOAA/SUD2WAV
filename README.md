@@ -3,7 +3,7 @@
 - Option 2. A Python web app to convert `.sud` files to `.wav` files using a docker.
     - The app uses a Java-based conversion libary and integrates it into a Python Streamlit web interface. 
 
-### Option 1. Using GitHub Actions
+## Option 1. Using GitHub Actions
 
 1. Ensure your repository includes the GitHub Actions workflow file (`.github/workflows/convert.yml`):
 2. Under Repo Settings > Actions > General > Workflow Permissions make sure they are set to "Read and write"
