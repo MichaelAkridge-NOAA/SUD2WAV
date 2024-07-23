@@ -48,7 +48,7 @@ jobs:
         pip install lxml
 
     - name: Run XML cleaning script
-      run: python /workspace/scripts/clean_xml_files.py ${{ github.workspace }}/output_wav_files
+      run: python images/gh_action_files/scripts/clean_xml_files.py ${{ github.workspace }}/output_wav_files
       
     - name: Change file permissions
       run: sudo chown -R $USER:$USER ${{ github.workspace }}/output_wav_files
