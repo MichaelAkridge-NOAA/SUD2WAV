@@ -1,11 +1,49 @@
 import streamlit as st
 import os
 import subprocess
+import re
 
 st.set_page_config(
     page_title="SUD to WAV Converter",
     page_icon="🎵",
 )
+
+def remove_invalid_characters(xml_content):
+    # Remove all non-printable characters except for newline, carriage return, and tab
+    cleaned_content = re.sub(r'[^\x20-\x7E\x0A\x0D]', '', xml_content)
+    return cleaned_content
+
+def clean_xml_files_in_folder(folder_path):
+    total_files = 0
+    cleaned_files = 0
+    failed_files = 0
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".xml"):
+            total_files += 1
+            file_path = os.path.join(folder_path, filename)
+            
+            try:
+                # Read the XML file
+                with open(file_path, 'r', encoding='utf-8') as file:
+                    xml_content = file.read()
+                
+                # Clean the content
+                cleaned_content = remove_invalid_characters(xml_content)
+                
+                # Write the cleaned content back to the same file
+                with open(file_path, 'w', encoding='utf-8') as file:
+                    file.write(cleaned_content)
+                
+                cleaned_files += 1
+            except Exception as e:
+                failed_files += 1
+                st.error(f"Failed to process {filename}: {e}")
+    
+    return {
+        "total_files": total_files,
+        "cleaned_files": cleaned_files,
+        "failed_files": failed_files
+    }
 
 def convert_sud_to_wav(input_dir, output_dir):
     # Ensure output directory exists
@@ -74,7 +112,15 @@ if uploaded_files:
                 st.write("### ⚠️ Conversion Errors (if any):")
                 st.text(stderr)
         
-        # List the converted files
+        # Clean XML files in the output directory after conversion
+        st.write("### 📊 Cleaning XML Files:")
+        clean_summary = clean_xml_files_in_folder(output_directory)
+        st.write("### 📊 XML Cleaning Summary:")
+        st.write(f"**Total XML files:** {clean_summary['total_files']}")
+        st.write(f"**Cleaned XML files:** {clean_summary['cleaned_files']}")
+        st.write(f"**Failed XML files:** {clean_summary['failed_files']}")
+        
+        # List the converted and cleaned files
         output_files = os.listdir(output_directory)
-        st.write("### 📁 Converted Files:")
-        st.table([[file] for file in output_files])
+        st.write("### 📁 Converted and Cleaned Files:")
+        st.table([[file] for file in output_files if file.endswith('.wav') or file.endswith('.xml')])
