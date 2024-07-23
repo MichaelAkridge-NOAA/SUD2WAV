@@ -1,6 +1,7 @@
 # clean_xml_files.py
 import os
 import re
+import sys
 
 def remove_invalid_characters(xml_content):
     # Remove all non-printable characters except for newline, carriage return, and tab
@@ -40,7 +41,11 @@ def clean_xml_files_in_folder(folder_path):
     }
 
 if __name__ == "__main__":
-    folder_path = "/workspace/output_wav_files"
+    if len(sys.argv) != 2:
+        print("Usage: python clean_xml_files.py <folder_path>")
+        sys.exit(1)
+    
+    folder_path = sys.argv[1]
     summary = clean_xml_files_in_folder(folder_path)
     print("### 📊 XML Cleaning Summary:")
     print(f"**Total XML files:** {summary['total_files']}")
