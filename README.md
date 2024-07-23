@@ -1,6 +1,6 @@
 # SUD2WAV | SUD to WAV Converters
 - Option 1: A Python web app to convert `.sud` files to `.wav` files using docker & Java-based conversion library
-- Option 2: An automated conversion process using GitHub Action Workflow
+- Option 2: An automated conversion process using GitHub Action Workflow 
 
 <img src="https://github.com/MichaelAkridge-NOAA/SUD2WAV/raw/main/docs/s00.png" width="720"/>
 
