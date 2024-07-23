@@ -1,9 +1,11 @@
 name: Convert SUD(s) to WAV(s)
+
 on:
   push:
     branches:
       - main
       - 'input/**' # Trigger on pushes to the input_sud_files directory
+
 jobs:
   convert:
     runs-on: ubuntu-latest
@@ -12,8 +14,10 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 1
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
+
     - name: Cache Docker layers
       uses: actions/cache@v4
       with:
@@ -21,20 +25,39 @@ jobs:
         key: ${{ runner.os }}-buildx-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-buildx-
+
     - name: Build Docker image
       run: docker build -t sud_to_wav_converter -f images/gh_action_files/Dockerfile .
+
     - name: List input files
       run: ls -l ${{ github.workspace }}/input_sud_files
+
     - name: Run conversion script
       run: docker run --rm -v ${{ github.workspace }}/input_sud_files:/workspace/input_sud_files -v ${{ github.workspace }}/output_wav_files:/workspace/output_wav_files sud_to_wav_converter /workspace/scripts/convert_files.sh
+
     - name: List output files
       run: ls -l ${{ github.workspace }}/output_wav_files
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install lxml
+
+    - name: Run XML cleaning script
+      run: python /workspace/scripts/clean_xml_files.py ${{ github.workspace }}/output_wav_files
+      
     - name: Change file permissions
       run: sudo chown -R $USER:$USER ${{ github.workspace }}/output_wav_files
+
     - name: Configure Git identity
       run: |
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
+
     - name: Commit and push output files
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,5 +70,5 @@ jobs:
         git clean -fdx  # Remove all untracked files from the working directory
         mv /tmp/output_wav_files_copy output_wav_files  # Move the output files back
         git add output_wav_files  # Add only the output files
-        git commit -m 'Add converted wav files'
+        git commit -m 'Add converted and cleaned wav files'
         git push --force "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" $BRANCH_NAME
